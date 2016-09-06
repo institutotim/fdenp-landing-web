@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <title>Fora da Escola Não Pode!</title>
+    <link rel="stylesheet" href="resources/css/main.css" />
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="state-not-submitted">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <section class="box">
+                    <div class="box-container center-block">
+                        <header class="text-center">
+                            <img class="logo" src="resources/images/topo_logos_unicef@2x.png" width="275" height="203" title="Fora da Escola Não Pode!" alt="Fora da Escola Não Pode!"/>
+                        </header>
+                        <article class="stateful if-not-submitted if-submitting">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <form name="formSurvey" class="clearfix">
+                                        <div class="form-group">
+                                            <div id="error-message" class="stateful if-failed-to-submit alert alert-danger"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="user_email">Email do Agente *</label>
+                                            <input type="text" class="form-control" id="user_email" name="user_email" placeholder="E-mail do Agente">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="reportee_name">Nome completo da crian&ccedil;a *</label>
+                                            <span class="input-helper pull-right hidden-xs">Sem abrevia&ccedil;&otilde;es</span>
+                                            <input type="text" class="form-control" id="reportee_name" name="reportee_name" placeholder="Nome completo da crian&ccedil;a">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="reportee_mother_name">Nome completo do responsável *</label>
+                                            <span class="input-helper pull-right hidden-xs">Sem abrevia&ccedil;&otilde;es</span>
+                                            <input type="text" class="form-control" id="reportee_mother_name" name="reportee_mother_name" placeholder="Nome completo do respons&aacute;vel">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="reportee_birthdate">Data de nascimento da crian&ccedil;a</label>
+                                            <input type="text" class="form-control" id="reportee_birthdate" name="reportee_birthdate" placeholder="01/01/2015">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="address">Endere&ccedil;o *</label>
+                                            <input type="text" class="form-control" id="address" name="address" placeholder="Endere&ccedil;o">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="district">Bairro *</label>
+                                            <input type="text" class="form-control" id="district" name="district" placeholder="Bairro">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="number">N&uacute;mero</label>
+                                            <input type="text" class="form-control" id="number" name="number" placeholder="N&uacute;mero">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="reference">Refer&ecirc;ncia</label>
+                                            <input type="text" class="form-control" id="reference" name="reference" placeholder="Refer&ecirc;ncia">
+                                        </div>
+                                        <div class="form-group-options">
+                                            <label>Por que a criança ou adolescente esta fora da escola? *</label>
+                                            <p class="help-block">Selecione a principal causa identificada</p>
+                                            <p class="loading-causes"><img src="resources/images/loading.gif">Carregando lista de possíveis causas...</p>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <p class="causes-error"><img src="resources/images/warning.gif" width="16" height="16"> Por favor, selecione uma das opções abaixo.</p>
+                                            <div id="options"></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <button id="btnSend" type="submit" class="stateful if-not-submitted btn btn-send btn-block">Enviar</button>
+                                            <button type="button" disabled class="stateful if-submitting btn btn-send btn-block">Enviando...</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="stateful if-submitted-successfully" id="success-screen">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <img width="100" height="100" src="resources/images/check.png">
+                                </div>
+                                <div class="col-xs-9 phrase">
+                                    <h2>Alerta enviado com sucesso!</h2>
+                                    <p><a href="/">Clique aqui para realizar um novo alerta</a> </p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <script>
+        var ZUP_API_URL = '{ZUP_API_URL}';
+        var LANDING_API_URL = '{LANDING_API_URL}';
+    </script>
+    <!-- @if NODE_ENV='development' -->
+    <script src="vendor/aja/src/aja.js"></script>
+    <script src="vendor/validatinator/dev/js/validatinator.core.js"></script>
+    <script src="vendor/validatinator/dev/js/validatinator.messages.js"></script>
+    <script src="vendor/validatinator/dev/js/validatinator.polyfill.js"></script>
+    <script src="vendor/validatinator/dev/js/validatinator.utils.js"></script>
+    <script src="vendor/validatinator/dev/js/validatinator.validations.js"></script>
+    <script src="scripts/application/vanilla.js"></script>
+    <script src="scripts/application/input-mask.js"></script>
+    <script src="scripts/application/app.js"></script>
+    <!-- @endif -->
+    <!-- @if NODE_ENV='production' -->
+    <script type="text/javascript" src="scripts/app.min.js"></script>
+    <!-- @endif -->
+</body>
+</html>

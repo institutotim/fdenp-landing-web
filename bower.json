@@ -1,0 +1,31 @@
+{
+  "name": "unicef-landing-page",
+  "version": "1.0.0",
+  "dependencies": {
+    "bootstrap-sass": "~3.3.5",
+    "aja": "~0.3.4",
+    "validatinator": "git://github.com/lynxnathan/Validatinator.git#fe70d20ae265dd3c5bdc43d4bdc4ce21e4ddb849"
+  },
+  "overrides": {
+    "aja": {
+      "main": [
+        "src/aja.js"
+      ]
+    },
+    "validatinator": {
+      "main": [
+        "dev/js/validatinator.core.js",
+        "dev/js/validatinator.messages.js",
+        "dev/js/validatinator.polyfill.js",
+        "dev/js/validatinator.utils.js",
+        "dev/js/validatinator.validations.js"
+      ]
+    },
+    "bootstrap-sass": {
+      "ignore": true
+    },
+    "jquery": {
+      "ignore": true
+    }
+  }
+}
